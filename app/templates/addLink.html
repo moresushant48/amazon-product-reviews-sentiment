@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Link</title>
+
+    {% include 'links.html' %}
+</head>
+
+<body>
+    {% include 'header.html' %}
+
+    <form action="/insert-link" method="post">
+        <div class="card backdrop-blur mt-4 m-auto p-4" style="width: 700px;">
+            <h1>Analyze Product</h1>
+            <br>
+            <hr>
+            <div class="form-outline form-white">
+                <label class="form-label text-white" for="name">Amazon Product Name</label>
+                <input name="name" type="text" id="name" class="form-control bg-light"
+                    placeholder="Enter product name here" required />
+            </div>
+            <br><br>
+            <div class="form-outline form-white">
+                <label class="form-label text-white" for="url">Amazon Product Link</label>
+                <input name="url" type="url" id="url" class="form-control bg-light"
+                    placeholder="Enter product link here" required />
+            </div>
+            <br><br>
+
+            <button type="submit" class="btn btn-primary">Analyze</button>
+
+        </div>
+    </form>
+
+</body>
+
+</html>
