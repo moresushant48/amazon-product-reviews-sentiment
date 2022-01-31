@@ -1,46 +1,30 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Product
-{% endblock %}
-
-{% block nav %}
-
-<li class="nav-item">
-    <a class="nav-link" aria-current="page" href="/">Home</a>
-</li>
-<li class="nav-item">
-    <a class="nav-link active" href="/search">Products</a>
-</li>
-<li class="nav-item">
-    <a class="nav-link" href="/add-link">Search</a>
-</li>
-<li class="nav-item">
-    <a class="nav-link" href="/about">About</a>
-</li>
-
+Search
 {% endblock %}
 
 {% block body %}
 
-<form action="/product" method="post">
+<form action="/insert-link" method="post">
     <div class="card backdrop-blur mt-4 m-auto p-4" style="width: 700px;">
-        <h1>Product List</h1>
+        <h1>Search your Wish Product</h1>
         <br>
         <hr>
-        <select name="id" class="form-control-lg">
-            {% for item in data %}
-            <option value="{{ item[0] }}">{{ item[1] }}</option>
-            {% endfor %}
-        </select>
+        <div class="">
+            <label class="form-label" for="name">Amazon Product Name</label>
+            <input name="name" type="text" id="name" class="form-control" placeholder="Enter product name here"
+                required />
+        </div>
         <br><br>
-        {% if result %}
-        <h4 class="text-success text-center">Product inserted in database successfully.</h4>
-        <a href="/add-link" class="text-center"><button type="button" class="btn btn-outline-primary"
-                data-mdb-ripple-color="dark">Add New Link</button></a>
-        {% else %}
+        <div class="">
+            <label class="form-label" for="url">Amazon Product Link</label>
+            <input name="url" type="url" id="url" class="form-control" placeholder="Enter product link here" required />
+        </div>
+        <br><br>
+
         <button type="submit" class="btn btn-primary">Search</button>
-        {% endif %}
+
     </div>
 </form>
 

@@ -29,8 +29,8 @@ body {
   @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
     .backdrop-blur {
       background-color: rgba(255, 255, 255, 0.664);
-      /* -webkit-backdrop-filter: blur(8em); */
-      /* backdrop-filter: drop-shadow(16px 16px 18px rgb(255, 255, 255)) blur(8em); */
+      -webkit-backdrop-filter: blur(8em);
+      backdrop-filter: drop-shadow(16px 16px 18px rgb(255, 255, 255)) blur(8em);
     }
   }
 

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Product
+{% endblock %}
+
+{% block body %}
+
+<form action="/product" method="post">
+    <div class="card backdrop-blur mt-4 m-auto p-4" style="width: 700px;">
+        <h1>Product List</h1>
+        <br>
+        <hr>
+        <select name="id" class="form-control-lg">
+            {% for item in data %}
+            <option value="{{ item[0] }}">{{ item[1] }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        {% if result %}
+        <h4 class="text-success text-center">Product inserted in database successfully.</h4>
+        <a href="/add-link" class="text-center"><button type="button" class="btn btn-outline-primary"
+                data-mdb-ripple-color="dark">Add New Link</button></a>
+        {% else %}
+        <button type="submit" class="btn btn-primary">Search</button>
+        {% endif %}
+    </div>
+</form>
+
+{% endblock %}

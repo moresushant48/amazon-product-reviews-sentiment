@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Admin Panel
+{% endblock %}
+
+{% block body %}
+
+<div class="m-4">
+    <div class="card p-4 text-center">
+        <h1>Admin Panel</h1>
+        <br>
+        <hr>
+        <br>
+
+        <div class="row">
+            <h2 class="col text-start">All Users</h2>
+            <div class="col text-end"><a class="btn btn-info" href="/admin/products">View Products</a></div>
+        </div>
+
+
+        <div class="row mt-3 p-3 fw-bold">
+
+            <span class="col-1 text-center">ID</span>
+            <span class="col-3 text-center">Name</span>
+            <span class="col-4 text-center">Email Id</span>
+            <span class="col-3 text-center">Contact</span>
+            <span class="col-1 text-center">Delete</span>
+
+        </div>
+        <hr>
+        {% if users %}
+        {% for row in users %}
+        <div class="row mt-1 p-3">
+
+            <span class="col-1 text-center">{{ row[0] }}</span>
+            <span class="col-3 text-center">{{ row[3] }}</span>
+            <span class="col-4 text-center">{{ row[1] }}</span>
+            <span class="col-3 text-center">{{ row[2] }}</span>
+            <span class="col-1 text-center"><a href="/del/users?id={{ row[0] }}"><i
+                        class="far fa-trash-alt text-danger"></i></a></span>
+
+        </div>
+        {% endfor %}
+        {% else %}
+
+        <h3>No Users Found</h3>
+
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}
