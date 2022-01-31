@@ -1,38 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
+{% block title %}
+Home
+{% endblock %}
 
-    {% include 'links.html' %}
-</head>
+{% block nav %}
 
-<body>
-    {% include 'header.html' %}
+<li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="/">Home</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="/search">Products</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="/add-link">Search</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="/about">About</a>
+</li>
 
-    <div class="container m-auto vh-75 align-items-center">
+{% endblock %}
 
-        <div>
-            <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_MeTWrj.json" background="transparent"
-                speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
-        </div>
-        <div>
-            <p class="tag display-3 text-white fade-in-text">
-                Amazon Product Reviews<br>Sentiment Analysis
-            </p>
-            <br>
-            <br><br>
-            <p class="display-7 lead text-white fade-in-text">
-                This application is created using Flask & Python <br>for predicting sentiment of the product reviews
-                on the amazon website.
-            </p>
-        </div>
+{% block body %}
 
+<div class="container m-auto vh-75 align-items-center">
+
+    <div>
+        <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_MeTWrj.json" background="transparent"
+            speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+    </div>
+    <div>
+        <p class="tag display-3 text-white fade-in-text">
+            Amazon Product Reviews<br>Sentiment Analysis
+        </p>
+        <br>
+        <br><br>
+        <p class="display-7 lead text-white fade-in-text">
+            This application is created using Flask & Python <br>for predicting sentiment of the product reviews
+            on the amazon website.
+        </p>
     </div>
 
-</body>
+</div>
 
-</html>
+{% endblock %}

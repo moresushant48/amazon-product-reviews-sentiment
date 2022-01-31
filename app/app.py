@@ -21,11 +21,7 @@ def index():
 
 @app.route('/add-link')
 def addLink():
-    if(request.args.get('success') == 'true'):
-        result = request.args
-        return render_template("addLink.html", result=result)
-    else:
-        return render_template("addLink.html")
+    return render_template("addLink.html")
 
 
 @app.route('/insert-link', methods=['POST'])

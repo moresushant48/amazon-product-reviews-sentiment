@@ -1,181 +1,257 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product</title>
+{% block title %}
+Results
+{% endblock %}
 
-    {% include 'links.html' %}
-</head>
+{% block nav %}
 
-<body>
-    {% include 'header.html' %}
+<li class="nav-item">
+    <a class="nav-link" aria-current="page" href="/">Home</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link active" href="/search">Products</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="/add-link">Search</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="/about">About</a>
+</li>
 
+{% endblock %}
 
-    <!-- Modal -->
-    <div class="modal fade" id="figuresModal" tabindex="-1" aria-labelledby="figuresModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-dark" id="figuresModalLabel">Product Figures</h5>
-                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    {{ figures|safe }}
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-mdb-dismiss="modal">Close</button>
-                </div>
+{% block body %}
+
+<!-- Modal -->
+<div class="modal fade" id="figuresModal" tabindex="-1" aria-labelledby="figuresModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-dark" id="figuresModalLabel">Product Figures</h5>
+                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div class="modal-body text-center">
+                {{ figures|safe }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-mdb-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<br><br><br>
+
+{% if image and ul %}
+
+<div class="container">
+    <div class="card d-flex p-3">
+        <div class="m-3 row justify-content-center align-self-center text-center">
+            <img src="{{ image }}" class="rounded align-middle" height="200" width="200" />
+        </div>
+        <br>
+        <div class="text-center">
+            <h3> {{ name }} </h3>
+        </div>
+        <br>
+        <!-- <div class="text-center">
+            <a href="#reviews" class="btn btn-outline-light">View Reviews</a>
+            <button class="btn btn-outline-light" type="button" data-mdb-toggle="modal"
+                data-mdb-target="#figuresModal">View Figures</button>
+        </div>
+        <br> -->
+        <div>
+            <h4 class="p-4">About this product :</h4>
+            <div>{{ul|safe}}</div>
+        </div>
+    </div>
+
+    <br>
+    <!-- Buttons trigger collapse -->
+
+    <div class="text-center">
+        <div class="m-auto">
+            <button class="btn btn-outline-light btn-lg" type="button" data-mdb-toggle="collapse"
+                data-mdb-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">
+                Reviews
+            </button>
+            <button class="btn btn-outline-light btn-lg" type="button" data-mdb-toggle="collapse"
+                data-mdb-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">
+                Reviews with Analysis
+            </button>
         </div>
     </div>
 
 
+    <!-- Collapsed content -->
+    <div id="myCollapse">
 
-    <br><br><br>
+        <div class="collapse multi-collapse mt-3" id="multiCollapseExample1" data-mdb-parent="#myCollapse">
+            <div id="reviews" class="card backdrop-blur d-grid gap-3 p-3" style="width:auto">
 
-    {% if image and ul %}
 
-    <div class="container">
-        <div class="card backdrop-blur d-flex p-3">
-            <div class="m-3 row justify-content-center align-self-center text-center">
-                <img src="{{ image }}" class="rounded align-middle" height="200" width="200" />
+                {% if row_data|length > 0 %}
+
+                {% for row in row_data %}
+                <div class="row mt-3 p-3">
+
+                    <span class="col">{{ row[0] }}</span>
+
+                </div>
+                {% endfor %}
+
+                {% else %}
+                <p class="display-4 text-center">No Customer Reviews.</p>
+                {% endif %}
+
             </div>
-            <br>
-            <div class="text-center">
-                <h3> {{ name }} </h3>
-            </div>
-            <br>
-            <div class="text-center">
-                <a href="#reviews" class="btn btn-outline-light">View Reviews</a>
+        </div>
+        <div class="collapse multi-collapse mt-3" id="multiCollapseExample2" data-mdb-parent="#myCollapse">
+            <div id="reviews" class="card backdrop-blur d-grid gap-3 p-3" style="width:auto">
+
                 <button class="btn btn-outline-light" type="button" data-mdb-toggle="modal"
                     data-mdb-target="#figuresModal">View Figures</button>
-            </div>
-            <br>
-            <div>
-                <div class="p-4">About this product :</div>
-                <div>{{ul|safe}}</div>
-            </div>
-        </div>
 
-        <br>
-        <br>
-
-        <div id="reviews" class="card backdrop-blur d-grid gap-3 p-3" style="width:auto">
-
-            <!-- Tabs navs -->
-            <ul class="nav nav-tabs nav-fill mb-3 bg-light rounded" id="ex1" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link text-primary h3 active" id="tabAll" data-mdb-toggle="tab" href="#tabsAll"
-                        role="tab" aria-controls="tabsAll" aria-selected="true">
-                        <p class="h6">All</p>
-                    </a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link text-success h3" id="tabPositive" data-mdb-toggle="tab" href="#tabsPositive"
-                        role="tab" aria-controls="tabsPositive" aria-selected="false">
-                        <p class="h6">Positive</p>
-                    </a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link text-danger h3" id="tabNegative" data-mdb-toggle="tab" href="#tabsNegative"
-                        role="tab" aria-controls="tabsNegative" aria-selected="false">
-                        <p class="h6">Negative</p>
-                    </a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link text-warning h3" id="tabNeutral" data-mdb-toggle="tab" href="#tabsNeutral"
-                        role="tab" aria-controls="tabsNeutral" aria-selected="false">
-                        <p class="h6">Neutral</p>
-                    </a>
-                </li>
-            </ul>
-            <!-- Tabs navs -->
+                <!-- Tabs navs -->
+                <ul class="nav nav-tabs nav-fill mb-3 bg-light rounded" id="ex1" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link text-primary h3 active" id="tabAll" data-mdb-toggle="tab" href="#tabsAll"
+                            role="tab" aria-controls="tabsAll" aria-selected="true">
+                            <p class="h6">All</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link text-success h3" id="tabPositive" data-mdb-toggle="tab" href="#tabsPositive"
+                            role="tab" aria-controls="tabsPositive" aria-selected="false">
+                            <p class="h6">Positive</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link text-danger h3" id="tabNegative" data-mdb-toggle="tab" href="#tabsNegative"
+                            role="tab" aria-controls="tabsNegative" aria-selected="false">
+                            <p class="h6">Negative</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link text-warning h3" id="tabNeutral" data-mdb-toggle="tab" href="#tabsNeutral"
+                            role="tab" aria-controls="tabsNeutral" aria-selected="false">
+                            <p class="h6">Neutral</p>
+                        </a>
+                    </li>
+                </ul>
+                <!-- Tabs navs -->
 
 
+                {% if row_data|length > 0 %}
 
-            {% if row_data|length > 0 %}
+                <!-- Tabs content -->
+                <div class="tab-content" id="ex1-content">
+                    <div class="tab-pane fade show active" id="tabsAll" role="tabpanel" aria-labelledby="tabAll">
+                        {% for row in row_data %}
+                        <div class="row mt-3 p-3">
 
-            <!-- Tabs content -->
-            <div class="tab-content" id="ex1-content">
-                <div class="tab-pane fade show active" id="tabsAll" role="tabpanel" aria-labelledby="tabAll">
-                    {% for row in row_data %}
-                    <div class="row mt-3 p-3">
+                            <span class="col-10">{{ row[0] }}</span>
+                            {% if row[1]=='Positive' %}
+                            <span class="col-2 text-white d-flex align-items-center text-center">
+                                <div class="bg-success m-auto d-flex align-items-center text-center"
+                                    style="width: 120px; height: 60px;">
+                                    <span class="m-auto">Positive</span>
+                                </div>
+                            </span>
+                            {% elif row[1]=='Nagative' %}
+                            <span class="col-2 text-white d-flex align-items-center text-center">
+                                <div class="bg-danger m-auto d-flex align-items-center text-center"
+                                    style="width: 120px; height: 60px;">
+                                    <span class="m-auto">Negative</span>
+                                </div>
+                            </span>
+                            {% else %}
+                            <span class="col-2 text-white d-flex align-items-center text-center">
+                                <div class="bg-warning m-auto d-flex align-items-center text-center"
+                                    style="width: 120px; height: 60px;">
+                                    <span class="m-auto">Neutral</span>
+                                </div>
+                            </span>
+                            {% endif %}
 
-                        <span class="col-10">{{ row[0] }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="tab-pane fade" id="tabsPositive" role="tabpanel" aria-labelledby="tabPositive">
+                        {% for row in row_data %}
                         {% if row[1]=='Positive' %}
-                        <span class="col-2 bg-success text-white d-flex align-items-center text-center">Positive</span>
-                        {% elif row[1]=='Nagative' %}
-                        <span class="col-2 bg-danger text-white d-flex align-items-center text-center">Negative</span>
-                        {% else %}
-                        <span class="col-2 bg-warning text-white d-flex align-items-center text-center">Neutral</span>
+                        <div class="row mt-3 p-3">
+
+                            <span class="col-10">{{ row[0] }}</span>
+                            <span class="col-2 text-white d-flex align-items-center text-center">
+                                <div class="bg-success m-auto d-flex align-items-center text-center"
+                                    style="width: 120px; height: 60px;">
+                                    <span class="m-auto">Positive</span>
+                                </div>
+                            </span>
+
+                        </div>
                         {% endif %}
-
+                        {% endfor %}
                     </div>
-                    {% endfor %}
-                </div>
-                <div class="tab-pane fade" id="tabsPositive" role="tabpanel" aria-labelledby="tabPositive">
-                    {% for row in row_data %}
-                    {% if row[1]=='Positive' %}
-                    <div class="row mt-3 p-3">
+                    <div class="tab-pane fade" id="tabsNegative" role="tabpanel" aria-labelledby="tabNegative">
+                        {% for row in row_data %}
+                        {% if row[1]=='Nagative' %}
+                        <div class="row mt-3 p-3">
 
-                        <span class="col-10">{{ row[0] }}</span>
-                        <span class="col-2 bg-success text-white d-flex align-items-center text-center">Positive</span>
+                            <span class="col-10">{{ row[0] }}</span>
+                            <span class="col-2 text-white d-flex align-items-center text-center">
+                                <div class="bg-danger m-auto d-flex align-items-center text-center"
+                                    style="width: 120px; height: 60px;">
+                                    <span class="m-auto">Negative</span>
+                                </div>
+                            </span>
 
+                        </div>
+                        {% endif %}
+                        {% endfor %}
                     </div>
-                    {% endif %}
-                    {% endfor %}
-                </div>
-                <div class="tab-pane fade" id="tabsNegative" role="tabpanel" aria-labelledby="tabNegative">
-                    {% for row in row_data %}
-                    {% if row[1]=='Nagative' %}
-                    <div class="row mt-3 p-3">
+                    <div class="tab-pane fade" id="tabsNeutral" role="tabpanel" aria-labelledby="tabNeutral">
+                        {% for row in row_data %}
+                        {% if row[1]=='Neutral' %}
+                        <div class="row mt-3 p-3">
 
-                        <span class="col-10">{{ row[0] }}</span>
-                        <span class="col-2 bg-danger text-white d-flex align-items-center text-center">Negative</span>
+                            <span class="col-10">{{ row[0] }}</span>
+                            <span class="col-2 text-white d-flex align-items-center text-center">
+                                <div class="bg-warning m-auto d-flex align-items-center text-center"
+                                    style="width: 120px; height: 60px;">
+                                    <span class="m-auto">Neutral</span>
+                                </div>
+                            </span>
 
+                        </div>
+                        {% endif %}
+                        {% endfor %}
                     </div>
-                    {% endif %}
-                    {% endfor %}
                 </div>
-                <div class="tab-pane fade" id="tabsNeutral" role="tabpanel" aria-labelledby="tabNeutral">
-                    {% for row in row_data %}
-                    {% if row[1]=='Neutral' %}
-                    <div class="row mt-3 p-3">
+                <!-- Tabs content -->
 
-                        <span class="col-10">{{ row[0] }}</span>
-                        <span class="col-2 bg-warning text-white d-flex align-items-center text-center">Neutral</span>
+                {% else %}
+                <p class="display-4 text-center">No Customer Reviews.</p>
+                {% endif %}
 
-                    </div>
-                    {% endif %}
-                    {% endfor %}
-                </div>
             </div>
-            <!-- Tabs content -->
-
-            {% else %}
-            <p class="display-4 text-center">No Customer Reviews.</p>
-            {% endif %}
-
         </div>
-
-        <br>
-        <br>
-
     </div>
-    {% else %}
+
     <br>
     <br>
-    <p class="display-4 text-center">Couldn't get data. Please refresh.</p>
-    <br>
-    <br>
-    {% endif %}
 
+</div>
+{% else %}
+<br>
+<br>
+<p class="display-4 text-center">Couldn't get data. Please refresh.</p>
+<br>
+<br>
+{% endif %}
 
-
-
-</body>
-
-</html>
+{% endblock %}
