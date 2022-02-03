@@ -7,24 +7,35 @@ Home
 
 {% block body %}
 
-<div class="container m-auto vh-75 align-items-center">
+<div class="m-auto vh-100" style="background-color: white;">
 
-    <div>
-        <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_MeTWrj.json" background="transparent"
-            speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
-    </div>
-    <div>
-        <p class="tag display-3 text-white fade-in-text">
-            Amazon Product Reviews<br>Sentiment Analysis
-        </p>
-        <br>
-        <br><br>
-        <p class="display-7 lead text-white fade-in-text">
-            This application is created using Flask & Python <br>for predicting sentiment of the product reviews
-            on the amazon website.
-        </p>
-    </div>
+    <div class="container d-flex align-items-center">
+        <div class=" col">
+            <div>
+                <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_MeTWrj.json" background="transparent"
+                    speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+            </div>
+            <div class="">
+                <p class="h1 tag display-3 text-success fade-in-text fw-bold">
+                    Revolutionary<br>Recommendations
+                </p>
+                <br>
+                <br>
+                <br>
+                <p class="display-7 lead fade-in-text fst-italic" style="color: gray;">
+                    This application is created using <br>Flask & Python that makes revolution in your purchase
+                    decision.
+                </p>
+                <br><br>
+                <a class="btn btn-primary btn-lg p-3 w-50 font-monospace" href="/login">Login & Explore</a>
+            </div>
+        </div>
 
+        <div class="col align-items-end">
+            <lottie-player class="ms-auto" src="https://assets10.lottiefiles.com/packages/lf20_akvycwlq.json"
+                background="transparent" speed="1" style="width: 550px; height: 550px;" loop autoplay></lottie-player>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

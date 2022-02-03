@@ -30,7 +30,7 @@ def insertLink():
     name = details['name']
     url = details['url']
     cur = mysql.connection.cursor()
-    cur.execute("INSERT INTO products(name,url) VALUES({0},{1})".format(name,
+    cur.execute("INSERT INTO products(name,url) VALUES('{0}','{1}')".format(name,
                 url))
     mysql.connection.commit()
     cur.close()
@@ -101,7 +101,7 @@ def register():
             email, password, username))
         mysql.connection.commit()
         cur.close()
-        return redirect("/login")
+        return render_template("register.html", msg="Registration Successful. Please Login")
     else:
         return render_template("register.html")
 
@@ -119,15 +119,16 @@ def login():
         else:
             cur = mysql.connection.cursor()
             cur.execute(
-                "SELECT * FROM users WHERE email = '{0}' AND password = {1}".format(email, password))
+                "SELECT * FROM users WHERE email = '{0}' AND password = '{1}'".format(email, password))
             users = cur.fetchall()
             cur.close()
 
             if len(users) > 0:
                 session['isAdmin'] = False
                 session['isLoggedIn'] = True
-                session['email'] = email
-                return redirect("/products")
+                session['email'] = users[0][1]
+                session['username'] = users[0][3]
+                return redirect("/")
             else:
                 return render_template("login.html", invalidCreds=True)
 

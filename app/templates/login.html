@@ -7,33 +7,42 @@ Login
 {% block body %}
 
 <form action="/login" method="post">
-    <div class="card backdrop-blur mt-4 m-auto p-4" style="width: 700px;">
-        <h1>Login</h1>
-        <br>
-        <hr>
-        <div class="">
-            <label class="form-label" for="email">Email Id</label>
-            <input name="email" type="email" id="email" class="form-control" placeholder="Enter Email Id here"
-                required />
+    <div class="card backdrop-blur mt-4 m-auto d-flex align-items-center justify-content-center"
+        style="width: 700px; height: 400px;">
+        <div class="d-flex">
+            <div class="col p-4 d-flex align-items-center justify-content-center">
+                <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_q5pk6p1k.json" class="m-4"
+                    background="transparent" speed="1" style="width: 250px; height: 250px;" loop autoplay>
+                </lottie-player>
+            </div>
+
+            <div class="col p-4 d-flex align-items-center justify-content-center">
+                <div>
+                    <h1 class="text-secondary">Login</h1>
+                    <br>
+
+                    <div class="">
+                        <label class="form-label" for="email">Email Id</label>
+                        <input name="email" type="email" id="email" class="form-control form-control-lg" required />
+                    </div>
+                    <br>
+                    <div class="">
+                        <label class="form-label" for="password">Password</label>
+                        <input name="password" type="password" id="password" class="form-control form-control-lg"
+                            required />
+                    </div>
+                    <br>
+
+                    <div class="text-center">
+                        {% if invalidCreds %}
+                        <span class="text-danger">Invalid Credentials</span>
+                        {% endif %}
+                    </div>
+
+                    <button type="submit" class="btn btn-secondary">Login</button>
+                </div>
+            </div>
         </div>
-        <br>
-        <div class="">
-            <label class="form-label" for="password">Password</label>
-            <input name="password" type="password" id="password" class="form-control" placeholder="Enter password here"
-                required />
-        </div>
-        <br>
-
-        <div class="text-center">
-            {% if invalidCreds %}
-            <span class="text-danger">Invalid Credentials</span>
-            {% endif %}
-
-        </div>
-        <br>
-
-        <button type="submit" class="btn btn-primary">Login</button>
-
     </div>
 </form>
 
