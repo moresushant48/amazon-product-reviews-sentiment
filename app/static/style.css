@@ -14,7 +14,7 @@ body {
     /* background:linear-gradient(to top, rgba(0, 0, 0, 0.596), hsla(0, 0%, 0%, 0.801)), whitesmoke no-repeat top center; */
     /* background-image: url("bg.jpg"); */
     /* background:linear-gradient(to top, rgba(0, 0, 0, 0.596), hsla(0, 0%, 0%, 0.801)), url("bg.jpg") no-repeat top center; */
-    background:linear-gradient(to top, rgba(0, 0, 0, 0.596), hsla(0, 0%, 0%, 0.801)), url("2.png") no-repeat top center;
+    background:linear-gradient(to top, rgba(0, 0, 0, 0.596), hsla(0, 0%, 0%, 0.801)), white no-repeat top center;
     background-size: cover;
     background-attachment: fixed;
     z-index: 4;
